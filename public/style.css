@@ -2,6 +2,20 @@
   background-color: green !important;
 }
 
+table {
+  position: relative;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
+
+tbody {
+  max-height: 300px; /* Set a maximum height for the tbody to enable scrolling */
+  overflow-y: auto;
+}
+
 td,
 th {
   text-align: center;

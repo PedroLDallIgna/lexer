@@ -66,6 +66,7 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
   table.classList.add('table', 'table-bordered', 'table-striped')
 
   const tableHead = document.createElement('thead');
+  tableHead.classList.add('table-dark')
   const tableHeadingRow = document.createElement('tr');
   const tableColumns = ('ς' + ALPHABET + 'ε').split('').map((char) => {
     const el = document.createElement('th');
