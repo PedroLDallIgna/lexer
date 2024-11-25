@@ -129,6 +129,10 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
   tokenVerify?.addEventListener('input', function (e: any) {
     const { value } = e.target;
 
+    const wordList = document.querySelector('.verificadas');
+    const listItems = wordList?.querySelectorAll('li');
+    const listItem = document.createElement('li');
+
     const newValue = value
       .toLowerCase()
       .replace(/[^\w]/, '')
@@ -139,8 +143,26 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
     renderTable(matrix, states);
     if (verifyToken(matrix, newValue)) {
       result!.textContent = `Token ${newValue} reconhecido`
+      result!.classList.remove('naoReconhecido');
+
+      // Verifica se o valor já está na lista
+      const alreadyExists = Array.from(listItems || []).some(
+        (item) => item.textContent === newValue
+      );
+
+      if (!alreadyExists) {
+        listItem.textContent = newValue;
+        wordList?.appendChild(listItem);
+      }
+
     } else {
       result!.textContent = `Token ${newValue} não reconhecido`
+      result!.classList.remove('reconhecido');
+      result!.classList.add('naoReconhecido');
+    }
+
+    if (result!.textContent === `Token ${newValue} reconhecido`) {
+      result!.classList.toggle('reconhecido');
     }
   });
 
@@ -149,6 +171,12 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
       const token = e.target.value
       addToken(matrix, states, token);
       renderTable(matrix, states);
+
+      const wordList = document.querySelector('.palavrasDicionario');
+      const listItem = document.createElement('li');
+      listItem.textContent = token;
+      wordList?.appendChild(listItem);
+
       e.target.value = '';
     }
   });
@@ -156,11 +184,11 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
   tokenVerify?.addEventListener('keydown', function (e: any) {
     if (e.keyCode == 32 || e.keyCode == 13) {
       const { value } = e.target;
-      
+
       if (verifyToken(matrix, value)) {
-        tokens.push({token: value, result: 'accepted'});
+        tokens.push({ token: value, result: 'accepted' });
       } else {
-        tokens.push({token: value, result: 'rejected'});
+        tokens.push({ token: value, result: 'rejected' });
       }
 
       console.log(tokens);

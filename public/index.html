@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -11,27 +11,48 @@
 </head>
 
 <body>
-  <h1>Lexer</h1>
+  <header>
+    <h1>Verificador Lexeco</h1>
+  </header>
 
-  <div>
-    <label>
-      <span>Insert:</span>
-      <input type="text" id="token-input" name="token-input">
-    </label>
-  </div>
+  <section id="conteudo">
+    <div class="superior">
+      <div id="inputsDivs">
+        <div class="inputs">
+          <label>
+            <span>Insert:</span>
+            <input type="text" id="token-input" name="token-input">
+          </label>
+        </div>
 
-  <div>
-    <label>
-      <span>Verify:</span>
-      <input type="text" id="token-verify" name="token-verify">
-    </label>
-  </div>
+        <div class="inputs">
+          <label>
+            <span>Verify:</span>
+            <input type="text" id="token-verify" name="token-verify">
+          </label>
+        </div>
+      </div>
 
-  <div>
-    <p id="result"></p>
-  </div>
+      <div class="textos">
+        <h1>Dicionario de palavras</h1>
+        <ul class="palavrasDicionario"></ul>
+      </div>
+    </div>
 
-  <div id="automaton"></div>
+
+
+
+    <div>
+      <p id="result"></p>
+    </div>
+
+    <ul class="verificadas">
+    </ul>
+
+    <div id="automaton"></div>
+  </section>
+
+
 
   <script src="../dist/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
