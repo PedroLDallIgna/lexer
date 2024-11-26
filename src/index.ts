@@ -106,6 +106,16 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
   tableContainer?.appendChild(table);
 }
 
+function generateToken() {
+  let token = '';
+  const tokenLength = Math.floor(Math.random() * (16 - 3 + 1)) + 3;
+  for (let i = 0; i <= tokenLength; i++) {
+    const randomIndex = Math.floor(Math.random() * ALPHABET.length);
+    token += ALPHABET.charAt(randomIndex);
+  }
+  return token;
+}
+
 (function () {
   const { matrix, states } = initializeAutomaton();
   const tokenInput = document.querySelector('#token-input');
@@ -190,8 +200,6 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
       } else {
         tokens.push({ token: value, result: 'rejected' });
       }
-
-      console.log(tokens);
 
       e.target.value = '';
       result!.textContent = '';
