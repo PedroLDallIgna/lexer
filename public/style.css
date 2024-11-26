@@ -46,7 +46,7 @@ header h1 {
 
 #inputsDivs {
   font-weight: bold;
-  height: 115px;
+  height: 180px;
   display: flex;
   padding: 10px;
   flex-direction: column;

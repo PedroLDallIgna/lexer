@@ -7,7 +7,6 @@ type TokenResult = {
 
 function initializeAutomaton() {
   const states: Array<number> = [];
-  const alphabet: Array<string> = ALPHABET.split('');
   const matrix: Array<Record<string, any>> = [{}]
 
   states.push(0);
@@ -102,7 +101,6 @@ function renderTable(matrix: Array<Record<string, any>>, states: number[]) {
   tableRows.forEach(row => tableBody.appendChild(row));
   table.appendChild(tableBody);
 
-
   tableContainer?.appendChild(table);
 }
 
@@ -118,12 +116,21 @@ function generateToken() {
 
 (function () {
   const { matrix, states } = initializeAutomaton();
+
   const tokenInput = document.querySelector('#token-input');
   const tokenVerify = document.querySelector('#token-verify');
   const result = document.querySelector('#result');
+  const generateTokenBtn = document.querySelector('#random-token-btn');
   const tokens: Array<TokenResult> = [];
 
   renderTable(matrix, states);
+
+  generateTokenBtn?.addEventListener('click', function (e: any) {
+    e.preventDefault();
+
+    const insertToken = document.querySelector('#token-input') as any;
+    insertToken.value = generateToken();
+  })
 
   tokenInput?.addEventListener('input', function (e: any) {
     const { value } = e.target;
